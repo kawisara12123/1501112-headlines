@@ -1,0 +1,12 @@
+# Distribution / packaging
+.Python
+
+# Environments
+.env
+.venv
+env/
+venv/
+
+
+.vscode/
+settings.json
