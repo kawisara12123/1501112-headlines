@@ -28,7 +28,7 @@ DEFAULTS = {'publication':'BBC',
 @app.route("/",methods=['GET', 'POST'])
 def home():
     # get customized headlines, based on user input or default
-    publication = request.args.get('publication').upper()
+    publication = request.args.get('publication')
     if not publication:
         publication = DEFAULTS['publication']
     articles = get_news(publication)
@@ -48,7 +48,7 @@ def home():
           currency_to=DEFAULTS['currency_to']
     rate, currencies = get_rate(currency_from, currency_to)
     response = make_response(render_template("home.html",
-    publication = publication,
+    publication = publication.upper(),
     articles=articles,
     weather=weather,
     currency_from=currency_from,
@@ -65,10 +65,10 @@ def home():
     
 
 def get_news(query):
-        if not query or query.lower() not in RSS_FEEDS:
+        if not query or query.upper() not in RSS_FEEDS:
                 publication = DEFAULTS["publication"]
         else:
-                publication = query.lower()
+                publication = query.upper()
         feed = feedparser.parse(RSS_FEEDS[publication])
         return feed['entries']
 
