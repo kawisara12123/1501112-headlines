@@ -23,7 +23,7 @@ DEFAULTS = {'publication':'BBC',
             'currency_from':'USD',
             'currency_to':'THB'}
 
-@app.route("/",methods=['GET', 'POST'])
+@app.route("/")
 def home():
     # get customized headlines, based on user input or default
     publication = request.args.get('publication')
